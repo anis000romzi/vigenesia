@@ -42,25 +42,31 @@ class Login extends REST_Controller
 
             if ($user) {
                 // Set the response and exit
-                $this->response([
+                $this->response(
+                    [
                     'status' => 'success',
-                    'is_active' => TRUE,
+                    'is_active' => true,
                     'message' => 'User login berhasil bro',
                     'data' => $user
-                ], REST_Controller::HTTP_OK);
+                    ], REST_Controller::HTTP_OK
+                );
             } else {
                 // Set the response and exit
-                $this->response([
+                $this->response(
+                    [
                     "status" => "fail",
                     "message" => "Ada kesalahan di email / password"
-                ], REST_Controller::HTTP_BAD_REQUEST);
+                    ], REST_Controller::HTTP_BAD_REQUEST
+                );
             }
         } else {
             // Set the response and exit
-            $this->response([
+            $this->response(
+                [
                 "status" => "fail",
                 "message" => "Belum mengisi email dan password"
-            ], REST_Controller::HTTP_BAD_REQUEST);
+                ], REST_Controller::HTTP_BAD_REQUEST
+            );
         }
     }
 }

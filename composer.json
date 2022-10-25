@@ -21,5 +21,8 @@
 	"license": "MIT",
 	"support": {
 		"source": "https://github.com/chriskacerguis/codeigniter-restserver"
+	},
+	"require-dev": {
+		"squizlabs/php_codesniffer": "*"
 	}
 }

@@ -30,10 +30,12 @@ class Users extends REST_Controller
             $this->db->where('iduser', $id);
             $api = $this->db->get('user')->result();
         }
-        $this->response([
+        $this->response(
+            [
             "status" => "success",
             "data" => $api
-        ], REST_Controller::HTTP_OK);
+            ], REST_Controller::HTTP_OK
+        );
     }
 
     // Add user, link: vigenesia/api/users, method: POST
@@ -75,31 +77,37 @@ class Users extends REST_Controller
                 // Check if the user data is inserted
                 if ($insert) {
                     // Set the response and exit
-                    $this->response([
+                    $this->response(
+                        [
                         'status' => 'success',
-                        'is_active' => TRUE,
+                        'is_active' => true,
                         'message' => 'The user has been added successfully',
                         'data' => $userData
-                    ], REST_Controller::HTTP_CREATED);
+                        ], REST_Controller::HTTP_CREATED
+                    );
                 } else {
                     // Set the response and exit
-                    $this->response([
+                    $this->response(
+                        [
                         "status" => "fail",
                         "message" => "Some problems occurred, please try again"
-                    ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
+                        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR
+                    );
                 }
             }
         } else {
             // Set the response and exit
-            $this->response([
+            $this->response(
+                [
                 "status" => "fail",
                 "message" => "Provide complete user info to add"
-            ], REST_Controller::HTTP_BAD_REQUEST);
+                ], REST_Controller::HTTP_BAD_REQUEST
+            );
         }
     }
 
     // Edit user's data, link: vigenesia/api/users/{id}, method: PUT
-    function index_put($id = '')
+    public function index_put($id = '')
     {
         $nama = $this->put('nama');
         $profesi = $this->put('profesi');
@@ -144,24 +152,30 @@ class Users extends REST_Controller
                 // Check if the user data is updated
                 if ($update) {
                     // Set the response and exit
-                    $this->response([
+                    $this->response(
+                        [
                         'status' => 'success',
                         'message' => 'user berhasil updated profile baru'
-                    ], REST_Controller::HTTP_OK);
+                        ], REST_Controller::HTTP_OK
+                    );
                 } else {
                     // Set the response and exit
-                    $this->response([
+                    $this->response(
+                        [
                         "status" => "fail",
                         "message" => "Some problems occurred, please try again"
-                    ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR);
+                        ], REST_Controller::HTTP_INTERNAL_SERVER_ERROR
+                    );
                 }
             }
         } else {
             // Set the response and exit
-            $this->response([
+            $this->response(
+                [
                 "status" => "fail",
                 "message" => "Provide complete user info to update"
-            ], REST_Controller::HTTP_BAD_REQUEST);
+                ], REST_Controller::HTTP_BAD_REQUEST
+            );
         }
     }
 }

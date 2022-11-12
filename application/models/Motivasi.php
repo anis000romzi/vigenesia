@@ -24,7 +24,7 @@ class Motivasi extends CI_Model
     {
         //add created and modified date if not exists
         if (!array_key_exists("tanggal_input", $data)) {
-            $data['tanggal_input'] = date("Y-m-d H:i:s");
+            $data['tanggal_input'] = date("F j, Y");
         }
 
 
@@ -43,7 +43,7 @@ class Motivasi extends CI_Model
     {
         //add modified date if not exists
         if (!array_key_exists("tanggal_update", $data)) {
-            $data['tanggal_update'] = date("Y-m-d H:i:s");
+            $data['tanggal_update'] = date("F j, Y");
         }
 
         //update materi data in materi table

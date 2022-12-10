@@ -19,6 +19,7 @@ class Motivations extends REST_Controller
             die();
         }
         $this->load->model('motivasi');
+        $this->load->model('user');
     }
 
     public function index_get($iduser = '')
@@ -45,12 +46,18 @@ class Motivations extends REST_Controller
                 REST_Controller::HTTP_BAD_REQUEST
             );
         } else {
-            $isi_motivasi = $this->input->post("isi_motivasi");
+            $this->db->where('iduser', $iduser);
+            $name = $this->db->get('user')->row_array();
+            $userName = $name['nama'];
+            $isi_motivasi = $this->post("isi_motivasi");
+            $judul = $this->post("judul");
 
             if ($isi_motivasi) {
                 $materiData = [
                     'isi_motivasi' => $isi_motivasi,
-                    'iduser' => $iduser
+                    'judul' => $judul,
+                    'iduser' => $iduser,
+                    'nama' => $userName
                 ];
 
                 $insert = $this->motivasi->insert($materiData);
@@ -93,6 +100,7 @@ class Motivations extends REST_Controller
     {
         // Get the post data
         $isi_motivasi = $this->put('isi_motivasi');
+        $judul = $this->put("judul");
 
         // Validate the post data
         if ($isi_motivasi) {
@@ -116,6 +124,9 @@ class Motivations extends REST_Controller
                 $Data = [];
                 if ($isi_motivasi) {
                     $Data['isi_motivasi'] = $isi_motivasi;
+                }
+                if ($judul) {
+                    $Data['judul'] = $judul;
                 }
 
                 $update = $this->motivasi->update($Data, $id);
